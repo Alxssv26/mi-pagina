@@ -2,8 +2,8 @@
 # Dependencias para la Página Web Romántica
 # ============================================
 
-# Framework web minimalista para Python
 Flask==2.3.3
+gunicorn==21.2.0
 
 # Dependencia de Flask (ya incluida, pero explícita)
 Jinja2==3.1.2
