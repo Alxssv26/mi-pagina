@@ -98,6 +98,14 @@ def google_verification():
     return send_from_directory('static', 'google097f8cb6f34439b5.html')
 
 # ============================================
+# 🗺️ SITEMAP PARA MOTOR DE BÚSQUEDA
+# ============================================
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
+# ============================================
 # ▶️ EJECUCIÓN DEL SERVIDOR
 # ============================================
 
