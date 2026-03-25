@@ -1,0 +1,131 @@
+📸 GUÍA PARA AGREGAR TUS FOTOS CON VALERIA
+═════════════════════════════════════════════════════════════════════
+
+¡Tu página ya está lista para mostrar tus fotos reales! Aquí te muestro cómo hacerlo:
+
+═════════════════════════════════════════════════════════════════════
+PASO 1: COPIAR LAS FOTOS A LA CARPETA CORRECTA
+═════════════════════════════════════════════════════════════════════
+
+📁 Ubicación de la carpeta:
+   c:\practica\static\images\
+
+📋 OPCIÓN A - USAR UN SCRIPT AUTOMÁTICO:
+   Crea un archivo: copiar_fotos.bat
+   
+   Pega esto en el archivo:
+   ──────────────────────────────────────────────────
+   @echo off
+   xcopy "c:\fotos con mi vale\*.*" "c:\practica\static\images\" /Y
+   echo Fotos copiadas con exito!
+   pause
+   ──────────────────────────────────────────────────
+   
+   Luego haz doble clic en copiar_fotos.bat
+
+📋 OPCIÓN B - COPIAR MANUALMENTE:
+   1. Abre el Explorador de Archivos
+   2. Ve a: c:\fotos con mi vale
+   3. Selecciona todas tus fotos (Ctrl+A)
+   4. Cópialas (Ctrl+C)
+   5. Ve a: c:\practica\static\images\
+   6. Pégalas (Ctrl+V)
+
+═════════════════════════════════════════════════════════════════════
+PASO 2: PERSONALIZAR LAS DESCRIPCIONES
+═════════════════════════════════════════════════════════════════════
+
+Abre: c:\practica\app.py
+
+Busca la sección: 'imagenes': [
+
+Personaliza las descripciones. Ejemplo:
+
+ANTES:
+──────────────────────────────────────────────────
+'imagenes': [
+    {
+        'url': '/static/images/foto1.jpg',
+        'descripcion': 'Nuestro primer viaje juntos ☕'
+    },
+]
+
+DESPUÉS (personalizado):
+──────────────────────────────────────────────────
+'imagenes': [
+    {
+        'url': '/static/images/foto1.jpg',
+        'descripcion': 'En la cafetería donde nos enamoramos 💕'
+    },
+    {
+        'url': '/static/images/foto2.jpg',
+        'descripcion': 'Tú siendo hermosa como siempre 😍'
+    },
+    {
+        'url': '/static/images/foto3.jpg',
+        'descripcion': 'Este fue un día perfecto contigo 🌙'
+    },
+]
+
+═════════════════════════════════════════════════════════════════════
+PASO 3: EJECUTAR LA PÁGINA
+═════════════════════════════════════════════════════════════════════
+
+1. Haz doble clic en: iniciar.bat
+2. Abre en tu navegador: http://localhost:5000
+3. ¡Disfruta viendo tus momentos especiales con Valeria!
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLOS DE DESCRIPCIONES LINDAS
+═════════════════════════════════════════════════════════════════════
+
+Prueba estas descripciones (cópialas y pégalas):
+
+☕ En la cafetería donde nos enamoramos
+👀 Esos ojos que me hipnotizan
+😘 El beso que lo cambió todo
+🌅 Nuestro atardecer especial
+🍓 Tan dulce como tú
+💃 Cuando la música es nuestro lenguaje
+🌹 La rosa que es mi Valeria
+🎨 Eres mi obra de arte favorita
+🏖️ Arena, mar y tu mano en la mía
+🌙 Bajo las estrellas juntos
+💍 Mi persona favorita en el mundo
+🥰 Así es como te veo siempre
+
+═════════════════════════════════════════════════════════════════════
+TIPS IMPORTANTES
+═════════════════════════════════════════════════════════════════════
+
+✅ Los nombres de archivo NO importan (foto1.jpg, IMG_001.jpg, etc)
+✅ Puedes tener tantas fotos como quieras
+✅ Las descripciones se ven al pasar el mouse sobre la foto
+✅ Puedes cambiar descripciones sin reiniciar
+✅ Los formatos permitidos: .jpg, .jpeg, .png, .gif
+
+❌ NO borres la carpeta static/images
+❌ NO cambies los nombres de los archivos app.py, etc
+
+═════════════════════════════════════════════════════════════════════
+¿NECESITAS AYUDA?
+═════════════════════════════════════════════════════════════════════
+
+Si las fotos no aparecen:
+1. Verifica que estén en: c:\practica\static\images\
+2. Recarga la página (F5)
+3. Abre la consola (F12) para ver si hay errores
+
+Si quieres agregar más fotos:
+1. Cópialas a la carpeta static/images
+2. Agrega una entrada en app.py:
+
+{
+    'url': '/static/images/nueva_foto.jpg',
+    'descripcion': 'Tu descrición aquí ❤️'
+},
+
+═════════════════════════════════════════════════════════════════════
+
+¡Hecho con amor para que Valeria vea nuestros mejores momentos! 💕
+

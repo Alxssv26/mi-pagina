@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I Love You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #020202;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        canvas {
+            position: fixed;
+            inset: 0;
+            display: block;
+            background: radial-gradient(circle at top, #0b0b17 0%, #05050a 45%, #010103 100%);
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .titulo {
+            font-size: clamp(2.8rem, 8vw, 7rem);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.2em;
+            color: #ff2b5f;
+            text-shadow: 0 0 35px #ff4d79, 0 0 65px rgba(255, 77, 121, 0.45);
+        }
+
+        .subtitulo {
+            margin-top: 0.6rem;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffc1d9;
+            text-shadow: 0 0 18px rgba(255, 74, 130, 0.5);
+        }
+
+        .btn-back {
+            position: fixed;
+            right: 22px;
+            top: 22px;
+            z-index: 10;
+            background: linear-gradient(135deg, #14d4ff, #0070ff);
+            border: 0;
+            border-radius: 999px;
+            color: #fff;
+            padding: 0.65rem 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(20, 212, 255, 0.35);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="heartCanvas"></canvas>
+    <div class="overlay">
+        <h1 class="titulo">I Love You</h1>
+        <p class="subtitulo">Te amare toda mi vida mi amor💕</p>
+    </div>
+    <button class="btn-back" onclick="location.href='/'">Regresar</button>
+
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function heart(t) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+            return [x, -y];
+        }
+
+        const particles = [];
+        const maxParticles = 360;
+
+        for (let i = 0; i < maxParticles; i++) {
+            const a = (Math.PI * 2 / maxParticles) * i;
+            const [x, y] = heart(a);
+            particles.push({
+                x: x * 18 + canvas.width / 2,
+                y: y * 18 + canvas.height / 2,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                size: Math.random() * 2.6 + 1,
+                life: Math.random() * 110 + 80,
+                alpha: 0
+            });
+        }
+
+        let tick = 0;
+        function draw() {
+            tick += 0.012;
+            ctx.fillStyle = 'rgba(4, 0, 8, 0.22)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'lighter';
+
+            particles.forEach((p, idx) => {
+                const m = 0.8 + 0.8 * Math.sin(tick + idx * 0.038);
+                p.vx += (Math.random() - 0.5) * 0.28;
+                p.vy += (Math.random() - 0.5) * 0.28;
+                p.vx *= 0.985;
+                p.vy *= 0.985;
+
+                p.x += p.vx * m;
+                p.y += p.vy * m;
+
+                // Reapuntar hacia el corazón para movimiento radical
+                const center = {x: canvas.width / 2, y: canvas.height / 2};
+                const dx = center.x - p.x;
+                const dy = center.y - p.y;
+                p.vx += (dx * 0.00015) * (Math.sin(tick * 1.2) + 0.8);
+                p.vy += (dy * 0.00015) * (Math.cos(tick * 1.1) + 0.8);
+
+                p.life -= 0.52;
+                if (p.life < 0) {
+                    const t = (idx / maxParticles) * Math.PI * 2;
+                    const [nx, ny] = heart(t + tick * 0.3);
+                    p.x = nx * 20 + canvas.width / 2;
+                    p.y = ny * 20 + canvas.height / 2;
+                    p.vx = (Math.random() - 0.5) * 1.2;
+                    p.vy = (Math.random() - 0.5) * 1.2;
+                    p.life = Math.random() * 140 + 100;
+                }
+
+                p.alpha = Math.max(0, Math.min(1, p.life / 120));
+                const glow = 15 + Math.random() * 30;
+                const r = 230 + Math.random() * 25;
+                const g = 40 + Math.random() * 30;
+                const b = 70 + Math.random() * 20;
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.95})`;
+                ctx.shadowBlur = glow;
+                ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.75})`;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            ctx.shadowBlur = 0;
+            ctx.globalCompositeOperation = 'source-over';
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>

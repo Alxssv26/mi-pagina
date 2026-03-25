@@ -1,0 +1,154 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║         💕 PÁGINA WEB ROMÁNTICA - GUÍA RÁPIDA 💕                ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+⚡ INICIO RÁPIDO (Windows)
+═════════════════════════════════════════════════════════════════════
+
+OPCIÓN 1 - Más fácil (Recomendado):
+────────────────────────────────────
+1. Haz doble clic en: iniciar.bat
+2. Espera a que aparezca "Running on http://localhost:5000"
+3. Abre tu navegador en: http://localhost:5000
+4. ¡Listo! ✨
+
+
+OPCIÓN 2 - Desde terminal:
+─────────────────────────
+1. Abre línea de comandos (Windows + R, escribe: cmd)
+2. Ve a la carpeta del proyecto:
+   cd c:\practica
+
+3. Instala Flask (solo la primera vez):
+   pip install -r requirements.txt
+
+4. Inicia el servidor:
+   python app.py
+
+5. Abre tu navegador en: http://localhost:5000
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✏️ PERSONALIZAR (Lo más importante)
+═════════════════════════════════════════════════════════════════════
+
+Abre el archivo: app.py
+
+Busca la sección con comentario: 🎨 CONFIGURACIÓN PERSONALIZABLE
+
+Cambia estos datos:
+
+    'mi_nombre': 'Tu Nombre',              ← TU NOMBRE
+    'nombre_novia': 'Nombre de ella',     ← NOMBRE DE TU NOVIA
+    'fecha_inicio': '2023-01-15',         ← FECHA DE INICIO (YYYY-MM-DD)
+
+Ejemplos de mensajes que puedes cambiar:
+    'mensajes': [
+        '❤️ Te amo más cada día',          ← Personaliza estos
+        '💕 Eres lo más importante',
+    ]
+
+Ejemplo de imágenes:
+    'imagenes': [
+        'https://enlace-tu-foto.jpg',  ← Usa URLs de fotos tuyas
+        'https://otra-foto.jpg',
+    ]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎨 CAMBIAR COLORES
+═════════════════════════════════════════════════════════════════════
+
+Abre: static/css/styles.css
+
+Busca estas líneas (arriba del archivo):
+    --color-primario: #ff6b9d;      ← Color principal (cambia esto)
+    --color-secundario: #ff85a1;    ← Otro color
+    --color-acento: #ffb3d9;        ← Otro color
+
+Códigos de colores útiles:
+- Rojo pasión: #e1255e
+- Rosa romántico: #ff6b9d
+- Púrpura: #c94e8f
+- Azul cielo: #87CEEB
+- Verde menta: #98ff98
+
+Guarda y recarga la página (F5)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 ESTRUCTURA DEL PROYECTO
+═════════════════════════════════════════════════════════════════════
+
+practica/
+├── app.py                    ← EDITA AQUÍ (nombres, fechas, mensajes)
+├── iniciar.bat              ← HACE DOBLE CLIC (para iniciar)
+├── README.md                ← Documentación completa
+├── requirements.txt         ← Dependencias
+│
+├── templates/
+│   └── index.html           ← HTML (¡No edites!)
+│
+└── static/
+    ├── css/
+    │   └── styles.css       ← Estilos (puedes editar colores)
+    ├── js/
+    │   └── script.js        ← Funcionalidades (¡No edites!)
+    └── images/              ← Guarda tus fotos aquí
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🆘 ERRORES COMUNES Y SOLUCIONES
+═════════════════════════════════════════════════════════════════════
+
+❌ "ModuleNotFoundError: No module named 'flask'"
+✅ Solución: Ejecuta esto en terminal:
+   pip install flask
+
+❌ "Address already in use - Port 5000"
+✅ Solución 1: Cierra el navegador y intenta de nuevo
+✅ Solución 2: Cambia el puerto en app.py (última línea)
+   app.run(debug=True, host='localhost', port=8000)
+
+❌ "Las imágenes no se ven"
+✅ Solución: Verifica que las URLs sean correctas
+✅ O guarda las fotos en: static/images/
+
+❌ El contador no está correcto
+✅ Solución: Verifica el formato de fecha_inicio (YYYY-MM-DD)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ CARACTERÍSTICAS ESPECIALES
+═════════════════════════════════════════════════════════════════════
+
+✅ Contador de tiempo en vivo
+✅ Corazones flotantes automáticos
+✅ Galería de fotos con efectos
+✅ Botón sorpresa con animación
+✅ Mensajes personalizados
+✅ Diseño completamente responsive (móvil + PC)
+✅ Animaciones suaves y románticas
+✅ Sin dependencias externas (solo Flask)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 PRÓXIMOS PASOS
+═════════════════════════════════════════════════════════════════════
+
+1. Personaliza app.py con tus datos ✏️
+2. Ejecuta iniciar.bat 🚀
+3. Abre http://localhost:5000 en tu navegador 🌐
+4. ¡Sorprende a tu novia! 💕
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Hecho con ❤️ para hacer sonreír a tu amor
+¡Buena suerte! 🌹

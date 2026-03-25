@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es" data-fecha-inicio="{{ fecha_inicio }}">
+
+<head>
+    <!-- ============================================ -->
+    <!-- 💕 PÁGINA WEB ROMÁNTICA - HTML 💕          -->
+    <!-- ============================================ -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una página web romántica para mi amor">
+
+    <title>💕 {{ nombre_novia }} & {{ mi_nombre }} 💕</title>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================ -->
+    <!-- PANTALLA DE CARGA DINÁMICA                 -->
+    <!-- ============================================ -->
+    <div id="loader-screen" class="loader-screen">
+        <div class="loader-card">
+            <h1>CARGANDO MI <span>❤️‍🩹</span> NIVEL DE AMOR</h1>
+            <div class="loader-bar">
+                <div id="loader-progress" class="loader-progress"></div>
+            </div>
+            <p id="loader-text">Iniciando corazones... 🌸</p>
+        </div>
+        <div class="flower-container" aria-hidden="true">
+            <div class="flower floral-1"></div>
+            <div class="flower floral-2"></div>
+            <div class="flower floral-3"></div>
+            <div class="flower floral-4"></div>
+            <div class="flower floral-5"></div>
+        </div>
+    </div>
+
+    <!-- AUDIO DE FONDO -->
+    <audio id="audio-todo-cambio" src="{{ url_for('static', filename='audio/todo_cambio.mp3') }}" preload="auto"
+        loop></audio>
+
+    <!-- ============================================ -->
+    <!-- CONTENEDOR PRINCIPAL                        -->
+    <!-- ============================================ -->
+    <div class="container parallax">
+
+        <!-- ▌ SECCIÓN DE CORAZONES FLOTANTES ▌ -->
+        <div id="corazones-flotantes"></div>
+
+        <!-- ▌ ENCABEZADO PRINCIPAL ▌ -->
+        <header class="encabezado">
+            <h1 class="titulo-principal">
+                <span class="corazon">💕</span>
+                {{ nombre_novia }}
+                <span class="corazon">💕</span>
+            </h1>
+            <p class="subtitulo">Desde el {{ fecha_inicio }}</p>
+            <p class="mensaje-especial">{{ mensaje_especial }}</p>
+        </header>
+
+        <!-- ▌ CONTADOR DE TIEMPO JUNTOS ▌ -->
+        <section class="contador-seccion">
+            <div class="contador-contenedor">
+                <div class="contador-item">
+                    <span class="contador-numero" id="dias">0</span>
+                    <span class="contador-etiqueta">Días</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="horas">0</span>
+                    <span class="contador-etiqueta">Horas</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="minutos">0</span>
+                    <span class="contador-etiqueta">Minutos</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="segundos">0</span>
+                    <span class="contador-etiqueta">Segundos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ▌ SECCIÓN INFORMACIÓN ▌ -->
+        <section class="info-seccion">
+            <div class="info-card">
+                <h2>Nuestro Viaje</h2>
+                <p> Cada momento contigo es especial, no sé cómo explicarlo bien, pero desde que nos
+                    conocimos mi vida cambió para mejor. Tu sonrisa me alegra el día y estar contigo me hace sentir
+                    tranquilo.
+
+                    Me gusta mucho estar a tu lado, hacerte feliz en cosas simples y verte bien, porque eso también me
+                    hace bien a mí. Contigo todo se siente más natural, más real.
+
+                    Te amo bastante, de verdad. Y quiero hacer lo posible para que estés bien a mi lado, cuidarte y que
+                    te sientas cómoda conmigo. Porque para mí no eres alguien más… eres alguien que quiero tener en mi
+                    vida.
+                </p>
+            </div>
+        </section>
+
+        <!-- ▌ GALERÍA DE IMÁGENES ▌ -->
+        <section class="galeria-seccion">
+            <h2 class="galeria-titulo">Momentos Especiales</h2>
+            <div class="galeria-contenedor">
+                {% for imagen in imagenes %}
+                <div class="galeria-item" style="--item-index: {{ loop.index0 }}">
+                    <img src="{{ imagen.url }}" alt="{{ imagen.descripcion }}" class="galeria-imagen">
+                    <p class="galeria-descripcion">{{ imagen.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ▌ MODAL DE IMAGENES ▌ -->
+        <div id="galeria-modal" class="galeria-modal hidden">
+            <div class="galeria-modal-contenido">
+                <button id="galeria-modal-cerrar" class="galeria-modal-cerrar" aria-label="Cerrar imagen">×</button>
+                <img id="galeria-modal-img" src="" alt="Imagen ampliada" class="galeria-modal-img">
+                <p id="galeria-modal-text" class="galeria-modal-text"></p>
+            </div>
+        </div>
+
+        <!-- ▌ SECCIÓN DE MENSAJES ▌ -->
+        <section class="mensajes-seccion">
+            <h2>Mensajes del Corazón</h2>
+            <div class="mensajes-contenedor">
+                {% for mensaje in mensajes %}
+                <div class="mensaje-card" style="--card-index: {{ loop.index0 }}">
+                    <p>{{ mensaje }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ▌ BOTÓN SORPRESA ▌ -->
+        <section class="sorpresa-seccion">
+            <button id="boton-sorpresa" class="boton-sorpresa">
+                🎁 ¡Sorpresa! 🎁
+            </button>
+        </section>
+
+        <!-- ▌ PÍE DE PÁGINA ▌ -->
+        <footer class="footer">
+            <p>Hecho con amor para {{ nombre_novia }} ❤️</p>
+            <p style="font-size: 0.8em; margin-top: 0.5em;">{{ mi_nombre }} 💕</p>
+        </footer>
+
+    </div>
+
+    <!-- ▌ SCRIPTS ▌ -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

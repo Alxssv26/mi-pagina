@@ -1,0 +1,282 @@
+║ ═════════════════════════════════════════════════════════════════════╝
+║ 💕 EJEMPLOS DE PERSONALIZACIÓN AVANZADA 💕
+║ ═════════════════════════════════════════════════════════════════════
+
+Este archivo te muestra ejemplos más avanzados para personalizar
+tu página romántica. Simplemente copia y pega en app.py
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 1: Cambiar todo a una temática diferente
+═════════════════════════════════════════════════════════════════════
+
+CONFIGURACION = {
+    'mi_nombre': 'Carlos',
+    'nombre_novia': 'María',
+    'fecha_inicio': '2022-05-14',
+    'color_tema': '#b19cd9',  # Púrpura
+    
+    'mensajes': [
+        '💜 Mi amor, eres mi universo',
+        '✨ Contigo descubrí qué es vivir',
+        '🌙 Cada noche pienso en ti',
+        '⭐ Eres mi estrella favorita',
+        '💎 Vales más que todo en el mundo',
+        '🎵 Tu sonrisa es mi canción favorita',
+        '🔥 Tu beso es mi respiración',
+    ],
+    
+    'imagenes': [
+        'https://via.placeholder.com/400x400/b19cd9/ffffff?text=Mi+Amor+💜',
+        'https://via.placeholder.com/400x400/c699d8/ffffff?text=Tu+Sonrisa',
+        'https://via.placeholder.com/400x400/d4b5e8/ffffff?text=Juntos+Siempre',
+    ]
+}
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 2: Muchas imágenes y mensajes (Máximo romanticismo)
+═════════════════════════════════════════════════════════════════════
+
+CONFIGURACION = {
+    'mi_nombre': 'Juan',
+    'nombre_novia': 'Sofia',
+    'fecha_inicio': '2021-03-20',
+    'color_tema': '#ff6b9d',
+    
+    'mensajes': [
+        '❤️ Te amo más cada día',
+        '💕 Eres mi razón de sonreír',
+        '🌹 Te amaré por siempre',
+        '✨ Mi corazón es completamente tuyo',
+        '💖 Eres lo más especial en mi vida',
+        '🎵 Tu voz es mi música',
+        '🌟 Iluminas mi oscuridad',
+        '💝 Contigo descubrí el verdadero amor',
+        '🦋 Mariposas en mi estómago',
+        '🌺 Eres mi flor favorita',
+        '⚡ Me atrae tu energía',
+        '🔥 Ardes la pasión en mis venas',
+    ],
+    
+    'imagenes': [
+        'https://via.placeholder.com/400x400/ff6b9d/ffffff?text=Momento+1',
+        'https://via.placeholder.com/400x400/ff7aa5/ffffff?text=Momento+2',
+        'https://via.placeholder.com/400x400/ff85a1/ffffff?text=Momento+3',
+        'https://via.placeholder.com/400x400/ff99c8/ffffff?text=Momento+4',
+        'https://via.placeholder.com/400x400/ffb3d9/ffffff?text=Momento+5',
+    ]
+}
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 3: Temática azul/fría
+═════════════════════════════════════════════════════════════════════
+
+CONFIGURACION = {
+    'mi_nombre': 'Luis',
+    'nombre_novia': 'Andrea',
+    'fecha_inicio': '2023-07-10',
+    'color_tema': '#0099ff',  # Azul cielo
+    
+    'mensajes': [
+        '💙 Te amo con todo mi corazón',
+        '❄️ Eres como un respiro de aire fresco',
+        '🌊 Te amo como el océano ama la luna',
+        '⛸️ Contigo todo es posible',
+        '🦢 Eres elegante y hermosa',
+        '❄️ Tu belleza congela el tiempo',
+    ],
+    
+    'imagenes': [
+        'https://via.placeholder.com/400x400/0099ff/ffffff?text=Para+Ti',
+        'https://via.placeholder.com/400x400/33aaff/ffffff?text=Te+Amo',
+    ]
+}
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 4: Cambiar puerto si 5000 está ocupado
+═════════════════════════════════════════════════════════════════════
+
+# Al final del archivo app.py, cambia esta línea:
+
+if __name__ == '__main__':
+    app.run(debug=True, host='localhost', port=8000)  # ← Cambiar 5000 a 8000
+    # Luego accede a: http://localhost:8000
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 5: Cómo agregar más rutas (avanzado)
+═════════════════════════════════════════════════════════════════════
+
+# Agrega esto en app.py después de la ruta @app.route('/'):
+
+@app.route('/nosotros')
+def nosotros():
+    """Página adicional de información"""
+    return render_template('nosotros.html',
+                         mi_nombre=CONFIGURACION['mi_nombre'],
+                         nombre_novia=CONFIGURACION['nombre_novia'])
+
+@app.route('/api/mensajes')
+def api_mensajes():
+    """API para obtener un mensaje aleatorio"""
+    import random
+    return {'mensaje': random.choice(CONFIGURACION['mensajes'])}
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 6: Cambiar estilos CSS personalizados
+═════════════════════════════════════════════════════════════════════
+
+Abre static/css/styles.css y busca estas variables (arriba):
+
+:root {
+    --color-primario: #ff6b9d;      ← Cambia el color principal
+    --color-secundario: #ff85a1;
+    --color-acento: #ffb3d9;
+    --color-fondo: #fff5f7;
+    --color-texto: #333;
+    --color-blanco: #ffffff;
+}
+
+Ejemplo para tema oscuro romántico:
+
+:root {
+    --color-primario: #ff1493;      /* Rosa profundo */
+    --color-secundario: #ff69b4;    /* Rosa medio */
+    --color-acento: #ff69b4;
+    --color-fondo: #1a0d1d;         /* Fondo oscuro */
+    --color-texto: #ffccdd;         /* Texto claro */
+    --color-blanco: #2a1a2d;        /* Casi negro */
+}
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 7: URLs de imágenes de distintas fuentes
+═════════════════════════════════════════════════════════════════════
+
+# Opción 1: Placeholder (temporal)
+'imagenes': [
+    'https://via.placeholder.com/400x400/ff6b9d/ffffff?text=Tu+Foto',
+]
+
+# Opción 2: Unsplash (fotos gratis)
+'imagenes': [
+    'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400&h=400&fit=crop',
+]
+
+# Opción 3: Pexels (fotos gratis)
+'imagenes': [
+    'https://images.pexels.com/photos/3862559/pexels-photo-3862559.jpeg?w=400&h=400&fit=crop',
+]
+
+# Opción 4: Imágenes locales
+'imagenes': [
+    '/static/images/foto1.jpg',
+    '/static/images/foto2.jpg',
+]
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 8: Usando fechas especiales
+═════════════════════════════════════════════════════════════════════
+
+# Aniversario importante
+'fecha_inicio': '2020-02-14',  # 14 de febrero (San Valentín)
+
+# Primer encuentro
+'fecha_inicio': '2019-12-25',  # Navidad
+
+# Aniversario de boda
+'fecha_inicio': '2022-06-15',  # Cualquier fecha importante
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 9: Estructura completa personalizada al máximo
+═════════════════════════════════════════════════════════════════════
+
+CONFIGURACION = {
+    'mi_nombre': 'Tu Nombre Aquí',
+    'nombre_novia': 'Su Nombre Aquí',
+    'fecha_inicio': '2020-05-15',
+    'color_tema': '#ff69b4',
+    
+    'mensajes': [
+        '❤️ Primer mensaje personalizado',
+        '💕 Segundo mensaje personalizado',
+        '💖 Tercer mensaje personalizado',
+        '✨ Cuarto mensaje personalizado',
+        '🌹 Quinto mensaje personalizado',
+        '💝 Sexto mensaje personalizado',
+        '🌟 Séptimo mensaje personalizado',
+        '⚡ Octavo mensaje personalizado',
+    ],
+    
+    'imagenes': [
+        'https://link-de-tu-foto-1.jpg',
+        'https://link-de-tu-foto-2.jpg',
+        'https://link-de-tu-foto-3.jpg',
+        'https://link-de-tu-foto-4.jpg',
+        'https://link-de-tu-foto-5.jpg',
+    ]
+}
+
+# ¡Listo! Con esto tienes personalizadas:
+# ✅ Nombres
+# ✅ Fecha
+# ✅ Color
+# ✅ Mensajes
+# ✅ Imágenes
+
+
+═════════════════════════════════════════════════════════════════════
+EJEMPLO 10: Emojis para los mensajes
+═════════════════════════════════════════════════════════════════════
+
+Emojis románticos que puedes usar:
+❤️  Corazón rojo
+💕 Dos corazones
+💖 Corazón con brillo
+💗 Corazón palpitante
+💝 Corazón con regalo
+💞 Corazones girando
+💘 Flecha del amor
+💟 Corazón de diamante
+❣️  Exclamación del corazón
+🌹 Rosa
+🌺 Flor de hibisco
+🌸 Flor de cerezo
+🌼 Girasol
+🌻 Girasol
+🎀 Lazo
+🎁 Regalo
+🎵 Nota musical
+💎 Diamante
+✨ Brillo
+⭐ Estrella
+🌟 Estrella brillante
+💫 Destellos
+🔥 Fuego
+❝ Comilla izquierda
+❞ Comilla derecha
+
+
+═════════════════════════════════════════════════════════════════════
+CONSEJOS IMPORTANTES
+═════════════════════════════════════════════════════════════════════
+
+1. SIEMPRE guarda los cambios antes de ejecutar app.py
+2. Para ver cambios en CSS, haz Ctrl+Shift+R (recarga sin caché)
+3. Para ver cambios en Python, detén y reinicia el servidor
+4. Usa cualquier código de color hex: https://www.color-hex.com/
+5. Añade tantos mensajes como quieras (sin límite)
+6. Las imágenes deben ser URLs completas (http... o https...)
+7. El formato de fecha DEBE ser: YYYY-MM-DD
+8. Los caracteres especiales se pueden usar sin problemas
+
+
+═════════════════════════════════════════════════════════════════════
+
+¡Diviértete personalizando! 💕
